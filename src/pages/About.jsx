@@ -121,7 +121,7 @@ const AboutPage = () => {
 
 
       {/* ----------- BENEFITS SECTION ----------- */}
-      <div className="grid grid-cols-3 max-w-6xl mx-auto mt-24 mb-16 gap-10 text-center">
+      <div className="grid grid-cols-3 max-w-6xl mx-auto mt-24 pb-16 gap-10 text-center">
 
         <div className="flex flex-col items-center">
           <img src={Services} className="w-[60px]" />
@@ -142,28 +142,7 @@ const AboutPage = () => {
         </div>
 
       </div>
-      <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
-        <nav>
-          <h6 className="footer-title">Services</h6>
-          <a className="link link-hover">Branding</a>
-          <a className="link link-hover">Design</a>
-          <a className="link link-hover">Marketing</a>
-          <a className="link link-hover">Advertisement</a>
-        </nav>
-        <nav>
-          <h6 className="footer-title">Company</h6>
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
-        </nav>
-        <nav>
-          <h6 className="footer-title">Legal</h6>
-          <a className="link link-hover">Terms of use</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Cookie policy</a>
-        </nav>
-      </footer>
+ 
 
     </div>
   );

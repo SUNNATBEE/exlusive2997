@@ -17,6 +17,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Error from './pages/Error.jsx'
 
 // ROUTER
 const router = createBrowserRouter([
@@ -30,8 +31,14 @@ const router = createBrowserRouter([
       { path: "signup", element: <SaginUp /> },
       { path: "wishlist", element: <Wishlist /> },
       { path: "cart", element: <Cart /> },
+ 
     ]
-  }
+    
+  },
+       {
+        path: "*",
+        element: <Error />
+      }
 ]);
 
 // RENDER
