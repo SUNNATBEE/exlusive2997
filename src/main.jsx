@@ -8,6 +8,7 @@ import Contact from './pages/Contact'
 import Home from './pages/Home'
 import Wishlist from './pages/Wishlist'
 import Cart from './pages/Cart'
+import Product from "./pages/Product.jsx";
 import SaginUp from "./pages/registers/SaginUp.jsx";
 
 import { Provider } from 'react-redux'
@@ -17,8 +18,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Checkout from './pages/Checkout.jsx'
 
-// ROUTER
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,11 +31,11 @@ const router = createBrowserRouter([
       { path: "signup", element: <SaginUp /> },
       { path: "wishlist", element: <Wishlist /> },
       { path: "cart", element: <Cart /> },
+      { path: "checkout/:id", element: <Checkout /> },
     ]
   }
 ]);
 
-// RENDER
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <RouterProvider router={router} />
