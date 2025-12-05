@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-// ❗ TO‘G‘RILANGAN IMPORT YO‘LI
 import { saginUp, clearError } from "../../redux/slice/SaginUpSlice";
 
 import SignImg from "../../assets/img.png";
