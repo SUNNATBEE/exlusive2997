@@ -19,6 +19,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Checkout from './pages/Checkout.jsx'
+import Error from './pages/Error.jsx'
 
 const router = createBrowserRouter([
   {
@@ -32,8 +33,14 @@ const router = createBrowserRouter([
       { path: "wishlist", element: <Wishlist /> },
       { path: "cart", element: <Cart /> },
       { path: "checkout/:id", element: <Checkout /> },
+ 
     ]
-  }
+    
+  },
+       {
+        path: "*",
+        element: <Error />
+      }
 ]);
 
 createRoot(document.getElementById('root')).render(

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Header from './components/Header'
 import { Outlet } from 'react-router-dom'
+import Footer from './components/Footer'
+// import About from './pages/About'
 
 const App = () => {
   const [wishlist, setWishlist] = useState(
@@ -23,6 +25,9 @@ const App = () => {
     <div>
       <Header />
       <Outlet context={{ wishlist, setWishlist, cart, setCart }} />
+      
+      <Footer/>
+ 
     </div>
   )
 }
