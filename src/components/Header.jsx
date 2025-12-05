@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { CiHeart, CiShoppingCart, CiUser } from "react-icons/ci";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
-import { useSelector } from "react-redux";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -22,8 +21,13 @@ const Header = () => {
   const isAuthenticated = !!(reduxUser || parsedUser);
   const user = reduxUser || parsedUser;
 
-  const wishlistCount = useSelector((state) => state.wishlist.items.length);
-  const cartCount = useSelector((state) => state.cart.items.length);
+  // Cart va Wishlist count'larni olish (agar mavjud bo'lsa)
+  const cartState = useSelector((state) => state.cart);
+  const wishlistState = useSelector((state) => state.wishlist);
+  
+  // Agar cart state mavjud bo'lsa, count'ni olish
+  const cartCount = cartState?.items?.length || 0;
+  const wishlistCount = wishlistState?.items?.length || 0;
 
   return (
     <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b">
@@ -69,14 +73,24 @@ const Header = () => {
               <input type="search" className="bg-transparent outline-none text-sm" placeholder="Search" />
             </label>
 
-            {/* Wishlist */}
-            <Link to={"/wishlist"}>
+            {/* Wishlist with badge */}
+            <Link to={"/wishlist"} className="relative">
               <CiHeart className="text-3xl text-black cursor-pointer hover:text-red-500 transition-colors" />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                  {wishlistCount}
+                </span>
+              )}
             </Link>
 
-            {/* Cart */}
-            <Link to={"/cart"}>
+            {/* Cart with badge */}
+            <Link to={"/cart"} className="relative">
               <CiShoppingCart className="text-3xl text-black cursor-pointer hover:text-red-500 transition-colors" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
             </Link>
 
             {/* USER ICON - LOGIN QILGAN BO'LSA Account GA, BO'LMASA SAGINUP GA */}
@@ -100,8 +114,8 @@ const Header = () => {
 
           {/* Mobile View */}
           <div className="flex md:hidden items-center gap-3">
-            {/* Wishlist Mobile */}
-            <Link to={"/wishlist"}>
+            {/* Wishlist Mobile with badge */}
+            <Link to={"/wishlist"} className="relative">
               <CiHeart className="text-3xl text-black cursor-pointer" />
               {wishlistCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
@@ -110,9 +124,14 @@ const Header = () => {
               )}
             </Link>
             
-            {/* Cart Mobile */}
-            <Link to={"/cart"}>
+            {/* Cart Mobile with badge */}
+            <Link to={"/cart"} className="relative">
               <CiShoppingCart className="text-3xl text-black cursor-pointer" />
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
             </Link>
 
             {/* USER ICON MOBILE - LOGIN QILGAN BO'LSA Account GA, BO'LMASA SAGINUP GA */}
