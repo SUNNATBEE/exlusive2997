@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { CiHeart, CiShoppingCart, CiUser } from "react-icons/ci";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -20,6 +21,9 @@ const Header = () => {
   // User mavjudligini tekshirish
   const isAuthenticated = !!(reduxUser || parsedUser);
   const user = reduxUser || parsedUser;
+
+  const wishlistCount = useSelector((state) => state.wishlist.items.length);
+  const cartCount = useSelector((state) => state.cart.items.length);
 
   return (
     <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b">
@@ -56,27 +60,13 @@ const Header = () => {
           <div className="hidden md:flex items-center gap-4">
             {/* Search */}
             <label className="flex items-center gap-2 px-3 py-2 rounded-md bg-black">
-              <svg
-                className="h-4 opacity-50"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2.5"
-                  fill="none"
-                  stroke="currentColor"
-                >
+              <svg className="h-4 opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2.5" fill="none" stroke="currentColor">
                   <circle cx="11" cy="11" r="8"></circle>
                   <path d="m21 21-4.3-4.3"></path>
                 </g>
               </svg>
-              <input
-                type="search"
-                className="bg-transparent outline-none text-sm"
-                placeholder="Search"
-              />
+              <input type="search" className="bg-transparent outline-none text-sm" placeholder="Search" />
             </label>
 
             {/* Wishlist */}
@@ -113,6 +103,11 @@ const Header = () => {
             {/* Wishlist Mobile */}
             <Link to={"/wishlist"}>
               <CiHeart className="text-3xl text-black cursor-pointer" />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                  {wishlistCount}
+                </span>
+              )}
             </Link>
             
             {/* Cart Mobile */}
@@ -135,11 +130,7 @@ const Header = () => {
 
             {/* Hamburger Menu */}
             <button onClick={() => setOpen((p) => !p)}>
-              {open ? (
-                <IoClose className="text-3xl text-black" />
-              ) : (
-                <GiHamburgerMenu className="text-3xl text-black" />
-              )}
+              {open ? <IoClose className="text-3xl text-black" /> : <GiHamburgerMenu className="text-3xl text-black" />}
             </button>
           </div>
         </nav>
@@ -171,11 +162,7 @@ const Header = () => {
                 <path d="m21 21-4.3-4.3"></path>
               </g>
             </svg>
-            <input
-              type="search"
-              className="bg-transparent outline-none text-sm w-full"
-              placeholder="Search"
-            />
+            <input type="search" className="bg-transparent outline-none text-sm w-full" placeholder="Search" />
           </label>
 
           {/* Mobile Navigation Links */}

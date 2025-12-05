@@ -8,6 +8,7 @@ import Contact from './pages/Contact'
 import Home from './pages/Home'
 import Wishlist from './pages/Wishlist'
 import Cart from './pages/Cart'
+import Product from "./pages/Product.jsx";
 import SaginUp from "./pages/registers/SaginUp.jsx";
 import Account from "./pages/Account.jsx";
 import Login from "./pages/registers/Login.jsx"; // ✅ LOGIN IMPORT QO'SHILDI
@@ -20,7 +21,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-// ROUTER
+import Checkout from './pages/Checkout.jsx'
+
+import Error from './pages/Error.jsx'
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,10 +39,14 @@ const router = createBrowserRouter([
       { path: "/cart", element: <Cart /> },
       { path: "/account", element: <Account /> },
     ]
-  }
+    
+  },
+       {
+        path: "*",
+        element: <Error />
+      }
 ]);
 
-// RENDER
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
